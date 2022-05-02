@@ -5,17 +5,12 @@ const Product = require("../models/product");
 const Users = require("../models/user");
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const urlStoring = require("../middlewares/previousUrl");
-const Razorpay = require("razorpay");
 const { v4: uuid } = require("uuid");
 const crypto = require("crypto");
 const Orders = require("../models/order");
 const currentUrl=require("../middlewares/currentUrl")
 require('dotenv').config();
 
-const instance = new Razorpay({
-  key_id: process.env.RZP_key_id,
-  key_secret: process.env.RZP_key_secret
-});
 router.post("/user/order",isLoggedIn, (req, res) => {
   try{
   let reciept = "ODRCPT_ID_" + uuid().slice(-12, -1);
